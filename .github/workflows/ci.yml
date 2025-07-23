@@ -135,4 +135,4 @@ jobs:
     - name: Upload release asset using gh CLI
       run: gh release upload ${{ github.event.release.tag_name }} node-package-builder-${{ github.event.release.tag_name }}.tar.gz
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
