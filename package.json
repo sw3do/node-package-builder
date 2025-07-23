@@ -1,0 +1,35 @@
+{
+  "name": "node-package-builder",
+  "version": "1.0.0",
+  "description": "A cross-platform npm module for building Node.js applications into single executable files",
+  "main": "index.js",
+  "bin": {
+    "node-package-builder": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "executable",
+    "sea",
+    "single-executable",
+    "cross-platform",
+    "packaging",
+    "build"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=18.16.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/node-package-builder.git"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "simple-cli-example",
+  "version": "1.0.0",
+  "description": "Simple CLI example for node-package-builder",
+  "main": "index.js",
+  "scripts": {
+    "build": "node-package-builder build --output simple-cli",
+    "build-all": "node-package-builder build --platforms linux,darwin,win32 --output simple-cli",
+    "build-optimized": "node-package-builder build --use-code-cache --output simple-cli-optimized"
+  },
+  "keywords": [
+    "cli",
+    "example",
+    "sea",
+    "executable"
+  ],
+  "author": "Node Package Builder",
+  "license": "MIT"
+}
