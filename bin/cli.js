@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+/**
+ * Command Line Interface for Node Package Builder
+ * Provides commands to build, manage, and initialize Node.js executable projects
+ * @fileoverview CLI tool for building Node.js applications into single executable files
+ */
+
 const { Command } = require('commander');
 const chalk = require('chalk');
 const ora = require('ora');
@@ -14,12 +20,16 @@ program
   .description('Build Node.js applications into single executable files')
   .version('1.0.0');
 
+/**
+ * Build command - Creates executable files from Node.js application
+ * Supports multiple platforms and various optimization options
+ */
 program
   .command('build')
   .description('Build executable from Node.js application')
   .option('-m, --main <file>', 'Main JavaScript file', 'index.js')
   .option('-o, --output <name>', 'Output executable name', 'app')
-  .option('-p, --platforms <platforms>', 'Target platforms (comma-separated)', process.platform)
+  .option('-p, --platforms <platforms>', 'Target platforms (comma-separated)', 'linux,darwin,win32')
   .option('--use-snapshot', 'Enable snapshot support', false)
   .option('--use-code-cache', 'Enable code cache', false)
   .option('--assets <assets>', 'Assets to include (JSON string)', '{}')
@@ -97,6 +107,9 @@ program
     }
   });
 
+/**
+ * Platforms command - Lists all supported target platforms
+ */
 program
   .command('platforms')
   .description('List supported platforms')
@@ -109,6 +122,27 @@ program
     });
   });
 
+/**
+ * Cleanup command - Removes all temporary build directories
+ */
+program
+  .command('cleanup')
+  .description('Clean up all temporary build directories')
+  .action(() => {
+    const spinner = ora('Cleaning up temporary directories...').start();
+    
+    try {
+      NodePackageBuilder.cleanupAllTempDirs();
+      spinner.succeed(chalk.green('Temporary directories cleaned up successfully'));
+    } catch (error) {
+      spinner.fail(chalk.red(`Failed to clean up: ${error.message}`));
+      process.exit(1);
+    }
+  });
+
+/**
+ * Init command - Creates a sample project with basic configuration
+ */
 program
   .command('init')
   .description('Initialize a sample project')
@@ -134,7 +168,8 @@ console.log('Arguments:', process.argv.slice(2));`;
         main: 'index.js',
         scripts: {
           build: 'node-package-builder build',
-          'build-all': 'node-package-builder build --platforms linux,darwin,win32'
+          'build-all': 'node-package-builder build --platforms linux,darwin,win32',
+          cleanup: 'node-package-builder cleanup'
         }
       };
       
@@ -149,6 +184,7 @@ console.log('Arguments:', process.argv.slice(2));`;
       console.log(chalk.white(`  cd ${projectName}`));
       console.log(chalk.white('  npm run build'));
       console.log(chalk.white(`  ./${projectName}`));
+      console.log(chalk.white('  npm run cleanup  # to clean temp files'));
       
     } catch (error) {
       spinner.fail(chalk.red(`Failed to create project: ${error.message}`));

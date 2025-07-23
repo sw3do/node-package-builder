@@ -1,0 +1,76 @@
+# Development files
+.git/
+.gitignore
+.gitattributes
+tsconfig.json
+jsdoc.conf.json
+
+# Documentation source
+docs/
+
+# Examples (keep them in npm package)
+# examples/
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Development dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
+tmp/
+temp/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# Editor directories and files
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

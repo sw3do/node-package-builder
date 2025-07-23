@@ -3,11 +3,20 @@
   "version": "1.0.0",
   "description": "A cross-platform npm module for building Node.js applications into single executable files",
   "main": "index.js",
+  "types": "index.d.ts",
   "bin": {
     "node-package-builder": "./bin/cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "docs:clean": "rm -rf docs",
+    "type-check": "tsc --noEmit",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outDir types",
+    "lint:types": "tsc --noEmit --skipLibCheck",
+    "prepublishOnly": "npm run type-check && npm run docs",
+    "prepack": "npm run build:types",
+    "postinstall": "echo \"Thank you for installing node-package-builder! 🚀\""
   },
   "keywords": [
     "nodejs",
@@ -18,18 +27,34 @@
     "packaging",
     "build"
   ],
-  "author": "Your Name",
+  "author": "sw3do <sw3doo@gmail.com> (https://github.com/sw3do)",
   "license": "MIT",
   "dependencies": {
     "commander": "^11.0.0",
     "chalk": "^4.1.2",
-    "ora": "^5.4.1"
+    "ora": "^5.4.1",
+    "axios": "^1.6.0",
+    "tar": "^6.2.0",
+    "yauzl": "^2.10.0",
+    "semver": "^7.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/tar": "^6.1.0",
+    "@types/yauzl": "^2.10.0",
+    "@types/semver": "^7.5.0",
+    "typescript": "^5.0.0",
+    "jsdoc": "^4.0.0"
   },
   "engines": {
     "node": ">=18.16.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/node-package-builder.git"
-  }
+    "url": "git+https://github.com/sw3do/node-package-builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sw3do/node-package-builder/issues"
+  },
+  "homepage": "https://github.com/sw3do/node-package-builder#readme"
 }

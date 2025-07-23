@@ -1,0 +1,21 @@
+{
+  "source": {
+    "include": ["./index.js", "./bin/cli.js", "./README.md"],
+    "includePattern": "\\.(js|jsx)$",
+    "exclude": ["node_modules/", "dist/", "examples/"]
+  },
+  "opts": {
+    "destination": "./docs/",
+    "recurse": true,
+    "readme": "./README.md"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  }
+}
