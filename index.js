@@ -226,18 +226,14 @@ class NodePackageBuilder {
       nodePath = await this.downloadNodeBinary(platform);
     }
     
-    if (platform === 'win32') {
-      if (!executableName.endsWith('.exe')) {
-        executableName += '.exe';
-      }
-      
-      try {
-        fs.copyFileSync(nodePath, executableName);
-      } catch (error) {
-        throw new Error(`Failed to copy Node.js executable from '${nodePath}' to '${executableName}': ${error.message}`);
-      }
-    } else {
-      execSync(`cp "${nodePath}" "${executableName}"`);
+    if (platform === 'win32' && !executableName.endsWith('.exe')) {
+      executableName += '.exe';
+    }
+    
+    try {
+      fs.copyFileSync(nodePath, executableName);
+    } catch (error) {
+      throw new Error(`Failed to copy Node.js executable from '${nodePath}' to '${executableName}': ${error.message}`);
     }
 
     if (platform === 'darwin') {
